@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}
+    New product
+{% endblock title %}
+{% block container %}
+    <div class="row mt-5 justify-content-center">
+    	<div class="col-sm-12 col-md-8 col-lg-6 col-xl-4 border rounded pt-5 pb-5 pr-3 pl-3 bg-white">
+    		<h3>Crea un nuevo producto</h3>
+    		<form action="{% url 'products:new' %}" method="POST" enctype="multipart/form-data">
+    			{% include "products/form.html" %}
+    			<input type="submit" class="btn btn-success col mt-4" value="Crear">
+    		</form>
+    	</div>
+    </div>
+{% endblock container %}

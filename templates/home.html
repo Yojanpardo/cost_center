@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}
+    Centro de costos
+{% endblock title %}
+{% block container %}
+	<div class="jumbotron">
+		<h1 class="display-3">Cost center</h1>
+		<p class="lead">Bienvenido! Listo para inspeccionar los costos de producción de tus productos?</p>
+		<hr class="my-4">
+		<div class="row">
+			<div class="card text-white bg-dark mb-3 mr-1 ml-1 col-sm-12 col-md-5 col-lg-3">
+			  	<div class="card-header">Mis productos</div>
+			  	<div class="card-body">
+			    	<h4 class="card-title">Dale un vistaso a tus productos!</h4>
+			    	<p class="card-text">Aquí vas a encontrar un listado de tus productos.</p>
+			    	<a href="{% url 'products:list' %}" class="btn btn-outline-secondary float-right">Vamos!</a>
+			  	</div>
+			</div>
+			<div class="card text-white bg-dark mb-3 mr-1 ml-1 col-sm-12 col-md-5 col-lg-3">
+			  	<div class="card-header">Crea un nuevo producto</div>
+			  	<div class="card-body">
+			    	<h4 class="card-title">Crea nuevos productos!</h4>
+			    	<p class="card-text">Aquí podrás crear un nuevo producto.</p>
+			    	<a href="{% url 'products:new' %}" class="btn btn-outline-secondary float-right">Crear!</a>
+			  	</div>
+			</div>
+		</div>
+	</div>
+{% endblock container %}	

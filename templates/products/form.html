@@ -1,0 +1,26 @@
+{% csrf_token %}
+<div class="form-group">
+    <label for="name">Nombre:</label>
+    <input type="text" name="name" id="name" class="form-control {% if form.name.errors %}is-invalid{% endif%}" value="{% if form.errors %}{{form.name.value}}{% elif product %}{{product.name}}{%endif%}">
+    {% if form.name.errors %}
+        {% for error in form.name.errors %}
+            <div class="invalid-feedback">
+                {{error}}
+            </div>
+        {% endfor %}
+    {% else %}
+        <br>
+    {% endif %}
+</div>
+<div class="form-group">
+    <label for="description">Descripción:</label>
+    <textarea name="description" id="description" class="form-control">{% if form.errors %}{{form.description.value}}{% elif product %}{{product.description}}{%endif%}</textarea>
+</div>
+<div class="form-group">
+    <label for="quantity">Cantidad producida por lote:</label>
+    <input type="number" name="quantity" class="form-control" value="{% if form.errors %}{{form.quantity.value}}{% elif product %}{{ product.quantity }}{% endif %}">
+</div>
+<div class="custom-file">
+    <label for="image" class="custom-file-label">Imagen:</label>
+    <input type="file" name="image" class="custom-file-input" id="customFile" readonly>
+</div>
