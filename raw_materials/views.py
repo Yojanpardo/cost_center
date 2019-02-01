@@ -1,12 +1,18 @@
 from django.shortcuts import render
 from django.views.generic import CreateView
-from .forms import CreateRawMaterialDetailForm
+from .forms import CreateRawMaterialDetailForm, RawMaterialCreateForm
 from .models import RawMaterialDetail, RawMaterial
 from products.models import Product
 from django.urls import reverse_lazy
 
 # Create your views here.
 
+class RawMaterialCreateView(CreateView):
+    model = RawMaterial
+    template_name = "raw_materials/new.html"
+    form_class = RawMaterialCreateForm
+    success_url = reverse_lazy('home')
+    
 class RawMaterialDetailCreateView(CreateView):
     model = RawMaterialDetail
     template_name = "raw_materials/add_raw_material.html"
