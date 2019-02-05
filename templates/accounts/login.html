@@ -1,0 +1,31 @@
+{% extends "accounts/base.html" %}
+{% block title %}
+    Login
+{% endblock title %}
+{% block container %}
+    <div class="row justify-content-center mt-5">
+    	<div class="col-sm-12 col-md-9 col-lg-4 border rounded bg-white pt-5 pb-5 pl-3 pr-3">
+    		<h3>Cost Center</h3>
+    		{% if form.errors %}
+				<div class="alert alert-danger alert-dismissible fade show" role="alert">
+					<p>Your username and password didn't match. Please try again.</p>
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		    			<span aria-hidden="true">&times;</span>
+		  			</button>
+				</div>
+			{% endif %}
+    		<form action="{% url 'accounts:login' %}" method="POST">
+    			{% csrf_token %}
+    			<div class="form-group">
+    				<label for="username">Username</label>
+    				<input type="text" name="username" id="username" class="form-control">
+    			</div>
+    			<div class="form-group">
+    				<label for="password">Password</label>
+    				<input type="password" name="password" id="password" class="form-control">
+    			</div>	
+    			<button type="submit" class="btn btn-success">Inicia</button>
+    		</form>
+    	</div>
+    </div>
+{% endblock container %}

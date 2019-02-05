@@ -5,15 +5,16 @@ from raw_materials.models import RawMaterialDetail
 from manpower.models import ManpowerDetail
 from .forms import CreateProductForm
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
-class ProductListView(ListView):
+class ProductListView(LoginRequiredMixin,ListView):
     model = Product
     template_name = "products/list.html"
     context_object_name = 'products'
 
-class ProductDetailView(DetailView):
+class ProductDetailView(LoginRequiredMixin,DetailView):
     model = Product
     template_name = "products/detail.html"
     context_object_name = 'product'
@@ -42,19 +43,19 @@ class ProductDetailView(DetailView):
         context['raw_materials'] = raw_materials
         return context
 
-class ProductCreateView(CreateView):
+class ProductCreateView(LoginRequiredMixin,CreateView):
     model = Product
     template_name = "products/new.html"
     form_class = CreateProductForm
     success_url = reverse_lazy('home')
 
-class ProductDeleteView(DeleteView):
+class ProductDeleteView(LoginRequiredMixin,DeleteView):
     model = Product
     template_name = "products/delete.html"
     context_object_name = "product"
     success_url = reverse_lazy('products:list')
 
-class ProductUpdateView(UpdateView):
+class ProductUpdateView(LoginRequiredMixin,UpdateView):
     model = Product
     fields = ['name','description','image','quantity']
     template_name = "products/update.html"

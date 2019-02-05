@@ -4,16 +4,17 @@ from .forms import CreateRawMaterialDetailForm, RawMaterialCreateForm
 from .models import RawMaterialDetail, RawMaterial
 from products.models import Product
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
-class RawMaterialCreateView(CreateView):
+class RawMaterialCreateView(LoginRequiredMixin,CreateView):
     model = RawMaterial
     template_name = "raw_materials/new.html"
     form_class = RawMaterialCreateForm
     success_url = reverse_lazy('home')
     
-class RawMaterialDetailCreateView(CreateView):
+class RawMaterialDetailCreateView(LoginRequiredMixin,CreateView):
     model = RawMaterialDetail
     template_name = "raw_materials/add_raw_material.html"
     form_class = CreateRawMaterialDetailForm

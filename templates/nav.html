@@ -12,12 +12,20 @@
       <li class="nav-item">
         <a class="nav-link" href="#">Features</a>
       </li>
+      {% if user.is_anonymous %}
+          
       <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
+        <a class="nav-link" href="{% url 'accounts:login' %}">Iniciar sesión</a>
       </li>
+      
+      {% endif %}
+      {% if not user.is_anonymous %}
+          
       <li class="nav-item">
-        <a class="nav-link" href="#">About</a>
+        <a class="nav-link" href="{% url 'accounts:logout' %}">Cerrar sesión</a>
       </li>
+      
+      {% endif %}
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="text" placeholder="Search">
